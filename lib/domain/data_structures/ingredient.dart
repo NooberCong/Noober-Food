@@ -1,4 +1,4 @@
-import 'package:nooberfood/domain/entites/i_recipe.dart';
+import 'package:nooberfood/domain/data_structures/i_recipe.dart';
 import 'package:flutter/foundation.dart';
 
 class Ingredient extends IRecipe {
@@ -11,11 +11,7 @@ class Ingredient extends IRecipe {
       {@required this.description,
       @required this.unit,
       @required this.amount,
-      @required String image})
-      : assert(description != null),
-        assert(unit != null),
-        assert(amount != null),
-        imageUrl = "https://spoonacular.com/cdn/ingredients_500x500/$image";
+      @required this.imageUrl});
   @override
   List<Object> get props => [description, imageUrl, unit, amount];
 }

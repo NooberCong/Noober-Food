@@ -1,6 +1,6 @@
+import 'package:nooberfood/domain/data_structures/i_recipe.dart';
 import 'package:nooberfood/domain/data_structures/ingredient.dart';
 import 'package:nooberfood/domain/data_structures/instruction.dart';
-import 'package:nooberfood/domain/entites/i_recipe.dart';
 import 'package:flutter/foundation.dart';
 
 class RecipeInformation extends IRecipe {
@@ -10,9 +10,9 @@ class RecipeInformation extends IRecipe {
   final bool healthy;
   final bool cheap;
   final double score;
+  final int readyInMinutes;
   final String id;
   final String title;
-  final String readyInMinutes;
   final String imageUrl;
   final String summary;
   final List<Instruction> instructions;
@@ -31,20 +31,21 @@ class RecipeInformation extends IRecipe {
       @required this.imageUrl,
       @required this.summary,
       @required this.instructions,
-      @required this.ingredients})
-      : assert(vegetarian != null),
-        assert(gluttenFree != null),
-        assert(dairyFree != null),
-        assert(healthy != null),
-        assert(cheap != null),
-        assert(score != null),
-        assert(id != null),
-        assert(title != null),
-        assert(readyInMinutes != null),
-        assert(imageUrl != null),
-        assert(summary != null),
-        assert(instructions != null),
-        assert(ingredients != null);
+      @required this.ingredients});
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [
+        vegetarian,
+        gluttenFree,
+        dairyFree,
+        healthy,
+        cheap,
+        score,
+        id,
+        title,
+        readyInMinutes,
+        imageUrl,
+        summary,
+        instructions,
+        ingredients
+      ];
 }

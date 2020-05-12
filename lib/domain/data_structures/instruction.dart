@@ -1,10 +1,9 @@
-import 'package:nooberfood/domain/entites/i_recipe.dart';
+import 'package:nooberfood/domain/data_structures/i_recipe.dart';
 import 'package:flutter/foundation.dart';
 
 class Instruction extends IRecipe {
   final int number;
   final String description;
-
   Instruction({
     @required this.number,
     @required this.description,

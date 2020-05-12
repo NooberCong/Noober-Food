@@ -5,10 +5,11 @@ class RecipePreview extends IRecipe {
   final String title;
   final String id;
   final String imageUrl;
-  RecipePreview({@required this.title, @required this.id})
-      : assert(title != null),
-        assert(id != null),
-        imageUrl = "https://spoonacular.com/recipeImages/$id-556x370.jpg";
+  RecipePreview({
+    @required this.title,
+    @required this.id,
+    @required this.imageUrl,
+  });
   @override
   List<Object> get props => [title, id, imageUrl];
 }
