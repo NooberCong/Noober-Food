@@ -60,13 +60,23 @@ class RecipeInformationModel extends RecipeInformation {
       summary: json["summary"] as String,
       readyInMinutes: (json["readyInMinutes"] as num).toInt(),
       score: (json["spoonacularScore"] as num).toDouble(),
-      instructions:
-          (json["analyzedInstructions"]["steps"] as List<Map<String, dynamic>>)
-              .map((instr) => InstructionModel.fromJson(instr))
-              .toList(),
-      ingredients: (json["extendedIngredients"] as List<Map<String, dynamic>>)
-          .map((ingr) => IngredientModel.fromJson(ingr))
-          .toList(),
+      instructions: _extractInstructions(json),
+      ingredients: _extractIngredients(json),
     );
   }
+}
+
+List<InstructionModel> _extractInstructions(Map<String, dynamic> json) {
+  if ((json["analyzedInstructions"] as List<dynamic>).isNotEmpty) {
+    return (json["analyzedInstructions"]["steps"] as List<Map<String, dynamic>>)
+        .map((instr) => InstructionModel.fromJson(instr))
+        .toList();
+  }
+  return [];
+}
+
+List<IngredientModel> _extractIngredients(Map<String, dynamic> json) {
+  return (json["extendedIngredients"] as List<Map<String, dynamic>>)
+      .map((ingr) => IngredientModel.fromJson(ingr))
+      .toList();
 }
