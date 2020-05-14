@@ -8,20 +8,20 @@ import 'package:nooberfood/infrastructure/data_structures/instruction_model.dart
 class RecipeInformationModel extends RecipeInformation {
   RecipeInformationModel(
       {@required bool vegetarian,
-      @required bool gluttenFree,
+      @required bool glutenFree,
       @required bool dairyFree,
       @required bool healthy,
       @required bool cheap,
       @required double score,
       @required int readyInMinutes,
-      @required String id,
+      @required int id,
       @required String title,
       @required String imageUrl,
       @required String summary,
       @required List<Instruction> instructions,
       @required List<Ingredient> ingredients})
       : assert(vegetarian != null),
-        assert(gluttenFree != null),
+        assert(glutenFree != null),
         assert(dairyFree != null),
         assert(healthy != null),
         assert(cheap != null),
@@ -35,7 +35,7 @@ class RecipeInformationModel extends RecipeInformation {
         assert(ingredients != null),
         super(
             vegetarian: vegetarian,
-            gluttenFree: gluttenFree,
+            glutenFree: glutenFree,
             dairyFree: dairyFree,
             healthy: healthy,
             cheap: cheap,
@@ -52,10 +52,10 @@ class RecipeInformationModel extends RecipeInformation {
       cheap: json["cheap"] as bool,
       dairyFree: json["dairyFree"] as bool,
       vegetarian: json["vegetarian"] as bool,
-      gluttenFree: json["gluttenFree"] as bool,
+      glutenFree: json["glutenFree"] as bool,
       healthy: json["veryHealthy"] as bool,
       title: json["title"] as String,
-      id: json["id"] as String,
+      id: (json["id"] as num).toInt(),
       imageUrl: json["image"] as String,
       summary: json["summary"] as String,
       readyInMinutes: (json["readyInMinutes"] as num).toInt(),
@@ -68,15 +68,16 @@ class RecipeInformationModel extends RecipeInformation {
 
 List<InstructionModel> _extractInstructions(Map<String, dynamic> json) {
   if ((json["analyzedInstructions"] as List<dynamic>).isNotEmpty) {
-    return (json["analyzedInstructions"]["steps"] as List<Map<String, dynamic>>)
-        .map((instr) => InstructionModel.fromJson(instr))
+    return (json["analyzedInstructions"][0]["steps"] as List<dynamic>)
+        .map(
+            (instr) => InstructionModel.fromJson(instr as Map<String, dynamic>))
         .toList();
   }
   return [];
 }
 
 List<IngredientModel> _extractIngredients(Map<String, dynamic> json) {
-  return (json["extendedIngredients"] as List<Map<String, dynamic>>)
-      .map((ingr) => IngredientModel.fromJson(ingr))
+  return (json["extendedIngredients"] as List<dynamic>)
+      .map((ingr) => IngredientModel.fromJson(ingr as Map<String, dynamic>))
       .toList();
 }

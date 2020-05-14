@@ -3,8 +3,8 @@ import 'package:nooberfood/domain/data_structures/i_recipe.dart';
 
 class RecipePreview extends IRecipe {
   final String title;
-  final String id;
   final String imageUrl;
+  final int id;
   RecipePreview({
     @required this.title,
     @required this.id,

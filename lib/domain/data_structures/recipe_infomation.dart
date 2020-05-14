@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 
 class RecipeInformation extends IRecipe {
   final bool vegetarian;
-  final bool gluttenFree;
+  final bool glutenFree;
   final bool dairyFree;
   final bool healthy;
   final bool cheap;
   final double score;
   final int readyInMinutes;
-  final String id;
+  final int id;
   final String title;
   final String imageUrl;
   final String summary;
@@ -20,7 +20,7 @@ class RecipeInformation extends IRecipe {
 
   RecipeInformation(
       {@required this.vegetarian,
-      @required this.gluttenFree,
+      @required this.glutenFree,
       @required this.dairyFree,
       @required this.healthy,
       @required this.cheap,
@@ -35,7 +35,7 @@ class RecipeInformation extends IRecipe {
   @override
   List<Object> get props => [
         vegetarian,
-        gluttenFree,
+        glutenFree,
         dairyFree,
         healthy,
         cheap,
