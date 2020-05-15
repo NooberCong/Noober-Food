@@ -16,27 +16,27 @@ class _$ParamsTearOff {
     return NoParams();
   }
 
-  RandomParams tagsRequestParams(List<String> tags) {
-    return RandomParams(
-      tags,
+  StringListParams stringListParams(List<String> list) {
+    return StringListParams(
+      list,
     );
   }
 
-  KeywordParams keywordParams(String keyword) {
-    return KeywordParams(
-      keyword,
-    );
-  }
-
-  IdParams idParams(String id) {
-    return IdParams(
-      id,
+  StringParams stringParams(String string) {
+    return StringParams(
+      string,
     );
   }
 
   IngredientsParams ingredientsParams(List<String> ingredients) {
     return IngredientsParams(
       ingredients,
+    );
+  }
+
+  UserPrefsParams userPrefsParams(UserPreferences userPreferences) {
+    return UserPrefsParams(
+      userPreferences,
     );
   }
 }
@@ -48,35 +48,35 @@ mixin _$Params {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
     @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
     Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
     @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
     Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
     @required Result orElse(),
   });
 }
@@ -128,16 +128,16 @@ class _$NoParams implements NoParams {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
     @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
     return noParams();
   }
 
@@ -145,10 +145,10 @@ class _$NoParams implements NoParams {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
     Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -162,16 +162,16 @@ class _$NoParams implements NoParams {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
     @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
     return noParams(this);
   }
 
@@ -179,10 +179,10 @@ class _$NoParams implements NoParams {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
     Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -197,89 +197,89 @@ abstract class NoParams implements Params {
   factory NoParams() = _$NoParams;
 }
 
-abstract class $RandomParamsCopyWith<$Res> {
-  factory $RandomParamsCopyWith(
-          RandomParams value, $Res Function(RandomParams) then) =
-      _$RandomParamsCopyWithImpl<$Res>;
-  $Res call({List<String> tags});
+abstract class $StringListParamsCopyWith<$Res> {
+  factory $StringListParamsCopyWith(
+          StringListParams value, $Res Function(StringListParams) then) =
+      _$StringListParamsCopyWithImpl<$Res>;
+  $Res call({List<String> list});
 }
 
-class _$RandomParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
-    implements $RandomParamsCopyWith<$Res> {
-  _$RandomParamsCopyWithImpl(
-      RandomParams _value, $Res Function(RandomParams) _then)
-      : super(_value, (v) => _then(v as RandomParams));
+class _$StringListParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
+    implements $StringListParamsCopyWith<$Res> {
+  _$StringListParamsCopyWithImpl(
+      StringListParams _value, $Res Function(StringListParams) _then)
+      : super(_value, (v) => _then(v as StringListParams));
 
   @override
-  RandomParams get _value => super._value as RandomParams;
+  StringListParams get _value => super._value as StringListParams;
 
   @override
   $Res call({
-    Object tags = freezed,
+    Object list = freezed,
   }) {
-    return _then(RandomParams(
-      tags == freezed ? _value.tags : tags as List<String>,
+    return _then(StringListParams(
+      list == freezed ? _value.list : list as List<String>,
     ));
   }
 }
 
-class _$RandomParams implements RandomParams {
-  _$RandomParams(this.tags) : assert(tags != null);
+class _$StringListParams implements StringListParams {
+  _$StringListParams(this.list) : assert(list != null);
 
   @override
-  final List<String> tags;
+  final List<String> list;
 
   @override
   String toString() {
-    return 'Params.tagsRequestParams(tags: $tags)';
+    return 'Params.stringListParams(list: $list)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is RandomParams &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)));
+        (other is StringListParams &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(tags);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
 
   @override
-  $RandomParamsCopyWith<RandomParams> get copyWith =>
-      _$RandomParamsCopyWithImpl<RandomParams>(this, _$identity);
+  $StringListParamsCopyWith<StringListParams> get copyWith =>
+      _$StringListParamsCopyWithImpl<StringListParams>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
     @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
-    return tagsRequestParams(tags);
+    assert(userPrefsParams != null);
+    return stringListParams(list);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
     Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (tagsRequestParams != null) {
-      return tagsRequestParams(tags);
+    if (stringListParams != null) {
+      return stringListParams(list);
     }
     return orElse();
   }
@@ -288,127 +288,127 @@ class _$RandomParams implements RandomParams {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
     @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
-    return tagsRequestParams(this);
+    assert(userPrefsParams != null);
+    return stringListParams(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
     Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (tagsRequestParams != null) {
-      return tagsRequestParams(this);
+    if (stringListParams != null) {
+      return stringListParams(this);
     }
     return orElse();
   }
 }
 
-abstract class RandomParams implements Params {
-  factory RandomParams(List<String> tags) = _$RandomParams;
+abstract class StringListParams implements Params {
+  factory StringListParams(List<String> list) = _$StringListParams;
 
-  List<String> get tags;
-  $RandomParamsCopyWith<RandomParams> get copyWith;
+  List<String> get list;
+  $StringListParamsCopyWith<StringListParams> get copyWith;
 }
 
-abstract class $KeywordParamsCopyWith<$Res> {
-  factory $KeywordParamsCopyWith(
-          KeywordParams value, $Res Function(KeywordParams) then) =
-      _$KeywordParamsCopyWithImpl<$Res>;
-  $Res call({String keyword});
+abstract class $StringParamsCopyWith<$Res> {
+  factory $StringParamsCopyWith(
+          StringParams value, $Res Function(StringParams) then) =
+      _$StringParamsCopyWithImpl<$Res>;
+  $Res call({String string});
 }
 
-class _$KeywordParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
-    implements $KeywordParamsCopyWith<$Res> {
-  _$KeywordParamsCopyWithImpl(
-      KeywordParams _value, $Res Function(KeywordParams) _then)
-      : super(_value, (v) => _then(v as KeywordParams));
+class _$StringParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
+    implements $StringParamsCopyWith<$Res> {
+  _$StringParamsCopyWithImpl(
+      StringParams _value, $Res Function(StringParams) _then)
+      : super(_value, (v) => _then(v as StringParams));
 
   @override
-  KeywordParams get _value => super._value as KeywordParams;
+  StringParams get _value => super._value as StringParams;
 
   @override
   $Res call({
-    Object keyword = freezed,
+    Object string = freezed,
   }) {
-    return _then(KeywordParams(
-      keyword == freezed ? _value.keyword : keyword as String,
+    return _then(StringParams(
+      string == freezed ? _value.string : string as String,
     ));
   }
 }
 
-class _$KeywordParams implements KeywordParams {
-  _$KeywordParams(this.keyword) : assert(keyword != null);
+class _$StringParams implements StringParams {
+  _$StringParams(this.string) : assert(string != null);
 
   @override
-  final String keyword;
+  final String string;
 
   @override
   String toString() {
-    return 'Params.keywordParams(keyword: $keyword)';
+    return 'Params.stringParams(string: $string)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is KeywordParams &&
-            (identical(other.keyword, keyword) ||
-                const DeepCollectionEquality().equals(other.keyword, keyword)));
+        (other is StringParams &&
+            (identical(other.string, string) ||
+                const DeepCollectionEquality().equals(other.string, string)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(keyword);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(string);
 
   @override
-  $KeywordParamsCopyWith<KeywordParams> get copyWith =>
-      _$KeywordParamsCopyWithImpl<KeywordParams>(this, _$identity);
+  $StringParamsCopyWith<StringParams> get copyWith =>
+      _$StringParamsCopyWithImpl<StringParams>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
     @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
-    return keywordParams(keyword);
+    assert(userPrefsParams != null);
+    return stringParams(string);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
     Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (keywordParams != null) {
-      return keywordParams(keyword);
+    if (stringParams != null) {
+      return stringParams(string);
     }
     return orElse();
   }
@@ -417,169 +417,42 @@ class _$KeywordParams implements KeywordParams {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
     @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
-    return keywordParams(this);
+    assert(userPrefsParams != null);
+    return stringParams(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
     Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (keywordParams != null) {
-      return keywordParams(this);
+    if (stringParams != null) {
+      return stringParams(this);
     }
     return orElse();
   }
 }
 
-abstract class KeywordParams implements Params {
-  factory KeywordParams(String keyword) = _$KeywordParams;
+abstract class StringParams implements Params {
+  factory StringParams(String string) = _$StringParams;
 
-  String get keyword;
-  $KeywordParamsCopyWith<KeywordParams> get copyWith;
-}
-
-abstract class $IdParamsCopyWith<$Res> {
-  factory $IdParamsCopyWith(IdParams value, $Res Function(IdParams) then) =
-      _$IdParamsCopyWithImpl<$Res>;
-  $Res call({String id});
-}
-
-class _$IdParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
-    implements $IdParamsCopyWith<$Res> {
-  _$IdParamsCopyWithImpl(IdParams _value, $Res Function(IdParams) _then)
-      : super(_value, (v) => _then(v as IdParams));
-
-  @override
-  IdParams get _value => super._value as IdParams;
-
-  @override
-  $Res call({
-    Object id = freezed,
-  }) {
-    return _then(IdParams(
-      id == freezed ? _value.id : id as String,
-    ));
-  }
-}
-
-class _$IdParams implements IdParams {
-  _$IdParams(this.id) : assert(id != null);
-
-  @override
-  final String id;
-
-  @override
-  String toString() {
-    return 'Params.idParams(id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is IdParams &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
-
-  @override
-  $IdParamsCopyWith<IdParams> get copyWith =>
-      _$IdParamsCopyWithImpl<IdParams>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
-    @required Result ingredientsParams(List<String> ingredients),
-  }) {
-    assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
-    assert(ingredientsParams != null);
-    return idParams(id);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
-    Result ingredientsParams(List<String> ingredients),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (idParams != null) {
-      return idParams(id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
-    @required Result ingredientsParams(IngredientsParams value),
-  }) {
-    assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
-    assert(ingredientsParams != null);
-    return idParams(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
-    Result ingredientsParams(IngredientsParams value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (idParams != null) {
-      return idParams(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class IdParams implements Params {
-  factory IdParams(String id) = _$IdParams;
-
-  String get id;
-  $IdParamsCopyWith<IdParams> get copyWith;
+  String get string;
+  $StringParamsCopyWith<StringParams> get copyWith;
 }
 
 abstract class $IngredientsParamsCopyWith<$Res> {
@@ -640,16 +513,16 @@ class _$IngredientsParams implements IngredientsParams {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result noParams(),
-    @required Result tagsRequestParams(List<String> tags),
-    @required Result keywordParams(String keyword),
-    @required Result idParams(String id),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
     @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
     return ingredientsParams(ingredients);
   }
 
@@ -657,10 +530,10 @@ class _$IngredientsParams implements IngredientsParams {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noParams(),
-    Result tagsRequestParams(List<String> tags),
-    Result keywordParams(String keyword),
-    Result idParams(String id),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
     Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -674,16 +547,16 @@ class _$IngredientsParams implements IngredientsParams {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result noParams(NoParams value),
-    @required Result tagsRequestParams(RandomParams value),
-    @required Result keywordParams(KeywordParams value),
-    @required Result idParams(IdParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
     @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
   }) {
     assert(noParams != null);
-    assert(tagsRequestParams != null);
-    assert(keywordParams != null);
-    assert(idParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
     assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
     return ingredientsParams(this);
   }
 
@@ -691,10 +564,10 @@ class _$IngredientsParams implements IngredientsParams {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noParams(NoParams value),
-    Result tagsRequestParams(RandomParams value),
-    Result keywordParams(KeywordParams value),
-    Result idParams(IdParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
     Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -710,4 +583,149 @@ abstract class IngredientsParams implements Params {
 
   List<String> get ingredients;
   $IngredientsParamsCopyWith<IngredientsParams> get copyWith;
+}
+
+abstract class $UserPrefsParamsCopyWith<$Res> {
+  factory $UserPrefsParamsCopyWith(
+          UserPrefsParams value, $Res Function(UserPrefsParams) then) =
+      _$UserPrefsParamsCopyWithImpl<$Res>;
+  $Res call({UserPreferences userPreferences});
+
+  $UserPreferencesCopyWith<$Res> get userPreferences;
+}
+
+class _$UserPrefsParamsCopyWithImpl<$Res> extends _$ParamsCopyWithImpl<$Res>
+    implements $UserPrefsParamsCopyWith<$Res> {
+  _$UserPrefsParamsCopyWithImpl(
+      UserPrefsParams _value, $Res Function(UserPrefsParams) _then)
+      : super(_value, (v) => _then(v as UserPrefsParams));
+
+  @override
+  UserPrefsParams get _value => super._value as UserPrefsParams;
+
+  @override
+  $Res call({
+    Object userPreferences = freezed,
+  }) {
+    return _then(UserPrefsParams(
+      userPreferences == freezed
+          ? _value.userPreferences
+          : userPreferences as UserPreferences,
+    ));
+  }
+
+  @override
+  $UserPreferencesCopyWith<$Res> get userPreferences {
+    if (_value.userPreferences == null) {
+      return null;
+    }
+    return $UserPreferencesCopyWith<$Res>(_value.userPreferences, (value) {
+      return _then(_value.copyWith(userPreferences: value));
+    });
+  }
+}
+
+class _$UserPrefsParams implements UserPrefsParams {
+  _$UserPrefsParams(this.userPreferences) : assert(userPreferences != null);
+
+  @override
+  final UserPreferences userPreferences;
+
+  @override
+  String toString() {
+    return 'Params.userPrefsParams(userPreferences: $userPreferences)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserPrefsParams &&
+            (identical(other.userPreferences, userPreferences) ||
+                const DeepCollectionEquality()
+                    .equals(other.userPreferences, userPreferences)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userPreferences);
+
+  @override
+  $UserPrefsParamsCopyWith<UserPrefsParams> get copyWith =>
+      _$UserPrefsParamsCopyWithImpl<UserPrefsParams>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result noParams(),
+    @required Result stringListParams(List<String> list),
+    @required Result stringParams(String string),
+    @required Result ingredientsParams(List<String> ingredients),
+    @required Result userPrefsParams(UserPreferences userPreferences),
+  }) {
+    assert(noParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
+    assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
+    return userPrefsParams(userPreferences);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result noParams(),
+    Result stringListParams(List<String> list),
+    Result stringParams(String string),
+    Result ingredientsParams(List<String> ingredients),
+    Result userPrefsParams(UserPreferences userPreferences),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (userPrefsParams != null) {
+      return userPrefsParams(userPreferences);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result noParams(NoParams value),
+    @required Result stringListParams(StringListParams value),
+    @required Result stringParams(StringParams value),
+    @required Result ingredientsParams(IngredientsParams value),
+    @required Result userPrefsParams(UserPrefsParams value),
+  }) {
+    assert(noParams != null);
+    assert(stringListParams != null);
+    assert(stringParams != null);
+    assert(ingredientsParams != null);
+    assert(userPrefsParams != null);
+    return userPrefsParams(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result noParams(NoParams value),
+    Result stringListParams(StringListParams value),
+    Result stringParams(StringParams value),
+    Result ingredientsParams(IngredientsParams value),
+    Result userPrefsParams(UserPrefsParams value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (userPrefsParams != null) {
+      return userPrefsParams(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserPrefsParams implements Params {
+  factory UserPrefsParams(UserPreferences userPreferences) = _$UserPrefsParams;
+
+  UserPreferences get userPreferences;
+  $UserPrefsParamsCopyWith<UserPrefsParams> get copyWith;
 }

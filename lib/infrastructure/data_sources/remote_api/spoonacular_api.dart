@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:nooberfood/core/errors/errors.dart';
 import 'package:nooberfood/core/network/network.dart';
 import 'package:nooberfood/domain/data_structures/recipe_preview.dart';
@@ -11,6 +12,8 @@ import 'package:nooberfood/infrastructure/data_structures/recipe_information_mod
 import 'package:nooberfood/infrastructure/data_structures/recipe_preview_model.dart';
 import 'package:nooberfood/keys/key.dart';
 
+@RegisterAs(IRecipeApi)
+@lazySingleton
 class SpoonacularApi implements IRecipeApi {
   final INetwork network;
   final http.Client client;
@@ -30,6 +33,7 @@ class SpoonacularApi implements IRecipeApi {
       "number": numberOfSearchResults.toString(),
       "apiKey": spoonacularAPIKey,
       "offset": offset.toString(),
+      "instructionsRequired": "true"
     };
     final url = _constructUrl(
       "/recipes/search",

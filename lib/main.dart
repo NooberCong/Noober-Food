@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nooberfood/dependencies_injection.dart';
 
-void main() {
+Future<void> main() async {
+  await configure();
   runApp(MyApp());
 }
 

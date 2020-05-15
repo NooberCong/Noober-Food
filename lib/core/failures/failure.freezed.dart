@@ -23,6 +23,14 @@ class _$FailureTearOff {
   _UnknownFailure unknown() {
     return _UnknownFailure();
   }
+
+  _IngredientExistFailure ingredientexist() {
+    return _IngredientExistFailure();
+  }
+
+  _IngredientNotExistFailure ingredientnotexist() {
+    return _IngredientNotExistFailure();
+  }
 }
 
 // ignore: unused_element
@@ -34,12 +42,16 @@ mixin _$Failure {
     @required Result noconnection(),
     @required Result server(),
     @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result noconnection(),
     Result server(),
     Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -47,12 +59,16 @@ mixin _$Failure {
     @required Result noconnection(_NoConnectionFailure value),
     @required Result server(_ServerFailure value),
     @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result noconnection(_NoConnectionFailure value),
     Result server(_ServerFailure value),
     Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
     @required Result orElse(),
   });
 }
@@ -109,10 +125,14 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
     @required Result noconnection(),
     @required Result server(),
     @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return noconnection();
   }
 
@@ -122,6 +142,8 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
     Result noconnection(),
     Result server(),
     Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -137,10 +159,14 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
     @required Result noconnection(_NoConnectionFailure value),
     @required Result server(_ServerFailure value),
     @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return noconnection(this);
   }
 
@@ -150,6 +176,8 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
     Result noconnection(_NoConnectionFailure value),
     Result server(_ServerFailure value),
     Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -202,10 +230,14 @@ class _$_ServerFailure implements _ServerFailure {
     @required Result noconnection(),
     @required Result server(),
     @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return server();
   }
 
@@ -215,6 +247,8 @@ class _$_ServerFailure implements _ServerFailure {
     Result noconnection(),
     Result server(),
     Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -230,10 +264,14 @@ class _$_ServerFailure implements _ServerFailure {
     @required Result noconnection(_NoConnectionFailure value),
     @required Result server(_ServerFailure value),
     @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return server(this);
   }
 
@@ -243,6 +281,8 @@ class _$_ServerFailure implements _ServerFailure {
     Result noconnection(_NoConnectionFailure value),
     Result server(_ServerFailure value),
     Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -295,10 +335,14 @@ class _$_UnknownFailure implements _UnknownFailure {
     @required Result noconnection(),
     @required Result server(),
     @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return unknown();
   }
 
@@ -308,6 +352,8 @@ class _$_UnknownFailure implements _UnknownFailure {
     Result noconnection(),
     Result server(),
     Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -323,10 +369,14 @@ class _$_UnknownFailure implements _UnknownFailure {
     @required Result noconnection(_NoConnectionFailure value),
     @required Result server(_ServerFailure value),
     @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
   }) {
     assert(noconnection != null);
     assert(server != null);
     assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
     return unknown(this);
   }
 
@@ -336,6 +386,8 @@ class _$_UnknownFailure implements _UnknownFailure {
     Result noconnection(_NoConnectionFailure value),
     Result server(_ServerFailure value),
     Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -348,4 +400,217 @@ class _$_UnknownFailure implements _UnknownFailure {
 
 abstract class _UnknownFailure implements Failure {
   factory _UnknownFailure() = _$_UnknownFailure;
+}
+
+abstract class _$IngredientExistFailureCopyWith<$Res> {
+  factory _$IngredientExistFailureCopyWith(_IngredientExistFailure value,
+          $Res Function(_IngredientExistFailure) then) =
+      __$IngredientExistFailureCopyWithImpl<$Res>;
+}
+
+class __$IngredientExistFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$IngredientExistFailureCopyWith<$Res> {
+  __$IngredientExistFailureCopyWithImpl(_IngredientExistFailure _value,
+      $Res Function(_IngredientExistFailure) _then)
+      : super(_value, (v) => _then(v as _IngredientExistFailure));
+
+  @override
+  _IngredientExistFailure get _value => super._value as _IngredientExistFailure;
+}
+
+class _$_IngredientExistFailure implements _IngredientExistFailure {
+  _$_IngredientExistFailure();
+
+  @override
+  String toString() {
+    return 'Failure.ingredientexist()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _IngredientExistFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result noconnection(),
+    @required Result server(),
+    @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
+  }) {
+    assert(noconnection != null);
+    assert(server != null);
+    assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
+    return ingredientexist();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result noconnection(),
+    Result server(),
+    Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (ingredientexist != null) {
+      return ingredientexist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result noconnection(_NoConnectionFailure value),
+    @required Result server(_ServerFailure value),
+    @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
+  }) {
+    assert(noconnection != null);
+    assert(server != null);
+    assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
+    return ingredientexist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result noconnection(_NoConnectionFailure value),
+    Result server(_ServerFailure value),
+    Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (ingredientexist != null) {
+      return ingredientexist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IngredientExistFailure implements Failure {
+  factory _IngredientExistFailure() = _$_IngredientExistFailure;
+}
+
+abstract class _$IngredientNotExistFailureCopyWith<$Res> {
+  factory _$IngredientNotExistFailureCopyWith(_IngredientNotExistFailure value,
+          $Res Function(_IngredientNotExistFailure) then) =
+      __$IngredientNotExistFailureCopyWithImpl<$Res>;
+}
+
+class __$IngredientNotExistFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$IngredientNotExistFailureCopyWith<$Res> {
+  __$IngredientNotExistFailureCopyWithImpl(_IngredientNotExistFailure _value,
+      $Res Function(_IngredientNotExistFailure) _then)
+      : super(_value, (v) => _then(v as _IngredientNotExistFailure));
+
+  @override
+  _IngredientNotExistFailure get _value =>
+      super._value as _IngredientNotExistFailure;
+}
+
+class _$_IngredientNotExistFailure implements _IngredientNotExistFailure {
+  _$_IngredientNotExistFailure();
+
+  @override
+  String toString() {
+    return 'Failure.ingredientnotexist()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _IngredientNotExistFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result noconnection(),
+    @required Result server(),
+    @required Result unknown(),
+    @required Result ingredientexist(),
+    @required Result ingredientnotexist(),
+  }) {
+    assert(noconnection != null);
+    assert(server != null);
+    assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
+    return ingredientnotexist();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result noconnection(),
+    Result server(),
+    Result unknown(),
+    Result ingredientexist(),
+    Result ingredientnotexist(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (ingredientnotexist != null) {
+      return ingredientnotexist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result noconnection(_NoConnectionFailure value),
+    @required Result server(_ServerFailure value),
+    @required Result unknown(_UnknownFailure value),
+    @required Result ingredientexist(_IngredientExistFailure value),
+    @required Result ingredientnotexist(_IngredientNotExistFailure value),
+  }) {
+    assert(noconnection != null);
+    assert(server != null);
+    assert(unknown != null);
+    assert(ingredientexist != null);
+    assert(ingredientnotexist != null);
+    return ingredientnotexist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result noconnection(_NoConnectionFailure value),
+    Result server(_ServerFailure value),
+    Result unknown(_UnknownFailure value),
+    Result ingredientexist(_IngredientExistFailure value),
+    Result ingredientnotexist(_IngredientNotExistFailure value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (ingredientnotexist != null) {
+      return ingredientnotexist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IngredientNotExistFailure implements Failure {
+  factory _IngredientNotExistFailure() = _$_IngredientNotExistFailure;
 }
