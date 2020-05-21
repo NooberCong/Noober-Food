@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String userPrefsKey = "USER_PREFS";
 const String ingredientsKey = "INGREDIENTS";
 const Map<String, dynamic> defaultUserPref = {
+  "diet": "All",
   "cuisine": [],
   "excludeIngredients": [],
   "intolerances": [],

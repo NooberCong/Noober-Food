@@ -4,6 +4,7 @@ part 'user_preferences.freezed.dart';
 part 'user_preferences.g.dart';
 
 const List<String> diets = [
+  "All",
   "Gluten Free",
   "Ketogenic",
   "Vegetarian",

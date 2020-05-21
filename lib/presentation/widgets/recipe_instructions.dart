@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:nooberfood/domain/data_structures/recipe_infomation.dart';
 
@@ -21,43 +23,6 @@ class _RecipeInstructionsState extends State<RecipeInstructions> {
         ? Theme(
             data: ThemeData(primaryColor: Colors.green),
             child: Stepper(
-              controlsBuilder: (BuildContext context,
-                  {VoidCallback onStepCancel, VoidCallback onStepContinue}) {
-                return Row(
-                  children: <Widget>[
-                    RaisedButton(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 30),
-                      onPressed: _stepIndex > 0 ? onStepCancel : null,
-                      color: Colors.green,
-                      child: const Text(
-                        'Back',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(width: 40),
-                    RaisedButton(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 30),
-                      onPressed:
-                          _stepIndex < widget.data.instructions.length - 1
-                              ? onStepContinue
-                              : null,
-                      color: Colors.green,
-                      child: const Text(
-                        'Next',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    )
-                  ],
-                );
-              },
               physics: const BouncingScrollPhysics(),
               currentStep: _stepIndex,
               onStepCancel: () => _setStep(_stepIndex - 1),
@@ -91,7 +56,7 @@ class _RecipeInstructionsState extends State<RecipeInstructions> {
 
   void _setStep(int step) {
     setState(() {
-      _stepIndex = step;
+      _stepIndex = max(min(step, widget.data.instructions.length - 1), 0);
     });
   }
 

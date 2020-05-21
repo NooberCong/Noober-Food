@@ -60,28 +60,36 @@ class DiscoverPage extends StatelessWidget {
               child: BlocBuilder<DiscoverPageBloc, DiscoverPageBlocState>(
                 builder: (context, state) {
                   return state.when(
-                      initial: () {
-                        context.bloc<DiscoverPageBloc>().add(
-                            const DiscoverPageBlocEvent.getRandomRecipes(
-                                ["breakfast"]));
-                        return const SizedBox();
-                      },
-                      loadingRandomRecipes: () => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                      loadedRandomRecipes: (data) => ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                topLeft: Radius.circular(10)),
-                            child: ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return RandomRecipeCard(data: data[index]);
-                              },
-                              itemCount: data.length,
-                            ),
-                          ),
-                      error: (message) => Text("Error: $message"));
+                    initial: () {
+                      context.bloc<DiscoverPageBloc>().add(
+                          const DiscoverPageBlocEvent.getRandomRecipes(
+                              ["breakfast"]));
+                      return const SizedBox();
+                    },
+                    loadingRandomRecipes: () => const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.5,
+                      ),
+                    ),
+                    loadedRandomRecipes: (data) => ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          topLeft: Radius.circular(10)),
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return RandomRecipeCard(data: data[index]);
+                        },
+                        itemCount: data.length,
+                      ),
+                    ),
+                    error: (message) => Center(
+                      child: Text(
+                        message,
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
@@ -114,8 +122,8 @@ class RandomRecipeTag extends StatelessWidget {
       children: <Widget>[
         SvgPicture.asset(
           "assets/images/$svgName.svg",
-          height: 60,
-          width: 60,
+          height: MediaQuery.of(context).size.width / 7.5,
+          width: MediaQuery.of(context).size.width / 7.5,
         ),
         Text(
           title,

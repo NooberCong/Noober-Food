@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nooberfood/application/bloc/ingredient_page_bloc/ingredient_page_bloc.dart';
 import 'package:nooberfood/dependencies_injection.dart';
+import 'package:nooberfood/presentation/widgets/ingredient_input.dart';
+import 'package:nooberfood/presentation/widgets/ingredient_item.dart';
 
 class IngredientsPage extends StatelessWidget {
   const IngredientsPage({Key key}) : super(key: key);
@@ -24,49 +26,41 @@ class IngredientsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const AddButton(),
+                const IngredientInput(),
                 const SizedBox(height: 20),
                 Expanded(
                   child: BlocBuilder<IngredientPageBloc, IngredientPageState>(
                     builder: (context, state) {
                       return state.when(initial: () {
-                        context
-                            .bloc<IngredientPageBloc>()
-                            .add(IngredientPageEvent.retrieveUserIngredients());
+                        _loadUserIngredients(context);
                         return const SizedBox();
                       }, ingredientsRetrieved: (data) {
                         return ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Material(
-                                  color: Colors.white,
-                                  child: ListTile(
-                                    contentPadding:
-                                        const EdgeInsets.only(left: 20),
-                                    title: Text(data[index]),
-                                    trailing: IconButton(
-                                      splashColor: Colors.transparent,
-                                      icon: Icon(
-                                        Icons.remove,
-                                        color: Colors.red,
-                                      ),
-                                      onPressed: () {
-                                        context.bloc<IngredientPageBloc>().add(
-                                            IngredientPageEvent
-                                                .removeIngredient(data[index]));
-                                      },
-                                    ),
-                                  ),
-                                ),
+                              return IngredientItem(
+                                ingredient: data[index],
+                                key: ValueKey(data[index]),
                               );
                             },
                             itemCount: data.length);
                       }, error: (message) {
-                        return Center(
-                          child: Text(message),
-                        );
+                        return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                message,
+                                style: TextStyle(
+                                  color: Theme.of(context).errorColor,
+                                ),
+                              ),
+                              FlatButton(
+                                onPressed: () => _loadUserIngredients(context),
+                                child: const Text("Back",
+                                    style: TextStyle(
+                                        color: Colors.pink, fontSize: 18)),
+                              )
+                            ]);
                       });
                     },
                   ),
@@ -94,59 +88,10 @@ class IngredientsPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class AddButton extends StatefulWidget {
-  const AddButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _AddButtonState createState() => _AddButtonState();
-}
-
-class _AddButtonState extends State<AddButton> {
-  final _controller = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30),
-      child: TextFormField(
-        controller: _controller,
-        onFieldSubmitted: (_) => _onSubmit(context),
-        decoration: InputDecoration(
-          fillColor: Colors.grey[300],
-          filled: true,
-          hintText: "What do your have?",
-          border: InputBorder.none,
-          suffixIcon: Container(
-            decoration: const BoxDecoration(
-                color: Colors.white, shape: BoxShape.circle),
-            child: IconButton(
-              icon: Icon(
-                Icons.add,
-                color: Colors.green,
-              ),
-              onPressed: () => _onSubmit(context),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _onSubmit(BuildContext context) {
-    if (_controller.text.isNotEmpty) {
-      context
-          .bloc<IngredientPageBloc>()
-          .add(IngredientPageEvent.addIngredient(_controller.text));
-      _controller.clear();
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void _loadUserIngredients(BuildContext context) {
+    context
+        .bloc<IngredientPageBloc>()
+        .add(IngredientPageEvent.retrieveUserIngredients());
   }
 }

@@ -55,7 +55,10 @@ class SearchPage extends StatelessWidget {
   Widget _buildBloc(BuildContext context, SearchPageState state) {
     return state.when(
       initial: () => const SizedBox(),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => const Center(
+          child: CircularProgressIndicator(
+        strokeWidth: 1.5,
+      )),
       loaded: (data) => ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
@@ -64,7 +67,9 @@ class SearchPage extends StatelessWidget {
         },
         itemCount: data.length,
       ),
-      error: (message) => Center(child: Text(message)),
+      error: (message) => Center(
+          child: Text(message,
+              style: TextStyle(color: Theme.of(context).errorColor))),
     );
   }
 }

@@ -42,11 +42,16 @@ class _RecipeInformationPageState extends State<RecipeInformationPage> {
         return const SizedBox();
       },
       loading: () => const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          strokeWidth: 1.5,
+        ),
       ),
       loaded: (data) => _buildBody(data),
       error: (message) => Center(
-        child: Text(message),
+        child: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).errorColor),
+        ),
       ),
     );
   }

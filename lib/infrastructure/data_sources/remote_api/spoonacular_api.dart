@@ -32,7 +32,7 @@ class SpoonacularApi implements IRecipeApi {
     await _checkConnection();
     final params = {
       "query": keyword,
-      "number": numberOfSearchResults.toString(),
+      "number": (numberOfSearchResults * 3).toString(),
       "apiKey": spoonacularAPIKey,
       "offset": offset.toString(),
       "instructionsRequired": "true"

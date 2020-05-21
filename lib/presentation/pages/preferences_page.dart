@@ -22,103 +22,130 @@ class _PreferencesPageState extends State<PreferencesPage> {
         title: const Text("Search Preferences",
             style: TextStyle(color: Colors.black)),
       ),
-      body: BlocProvider(
-        create: (_) => getIt<PreferencesPageBloc>(),
-        child: BlocBuilder<PreferencesPageBloc, PreferencesPageState>(
-          builder: (context, state) {
-            return state.when(
-              initial: () {
-                context
-                    .bloc<PreferencesPageBloc>()
-                    .add(const PreferencesPageEvent.getUserPreferences());
-                return const SizedBox.expand();
-              },
-              loaded: (data) => Column(
-                children: <Widget>[
-                  ListTile(
-                    title: const Text("Diet",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18)),
-                    trailing: DropdownButton(
-                      items: diets
-                          .map((entry) => DropdownMenuItem(
-                                value: entry,
-                                child: Text(entry),
-                              ))
-                          .toList(),
-                      value: data.diet,
-                      onChanged: (String value) {
-                        final modifiedUserPrefs = _changeDiet(data, value);
-                        _setUserPrefs(context, modifiedUserPrefs);
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: _buildBody(),
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return BlocProvider(
+      create: (_) => getIt<PreferencesPageBloc>(),
+      child: BlocBuilder<PreferencesPageBloc, PreferencesPageState>(
+        builder: (context, state) {
+          return state.when(
+            initial: () {
+              context
+                  .bloc<PreferencesPageBloc>()
+                  .add(const PreferencesPageEvent.getUserPreferences());
+              return const SizedBox.expand();
+            },
+            loaded: (data) => Column(
+              children: <Widget>[
+                ListTile(
+                  title: const Text(
+                    "Diet",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  ),
+                  subtitle: const Text(
+                    "Select your preferred diet, defaults to all",
+                    style: TextStyle(color: Colors.pink),
+                  ),
+                  trailing: DropdownButton(
+                    items: diets
+                        .map((entry) => DropdownMenuItem(
+                              value: entry,
+                              child: Text(entry),
+                            ))
+                        .toList(),
+                    value: data.diet,
+                    onChanged: (String value) {
+                      final modifiedUserPrefs = _changeDiet(data, value);
+                      _setUserPrefs(context, modifiedUserPrefs);
+                    },
+                  ),
+                ),
+                const ListTile(
+                  title: Text(
+                    "Cuisines",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  ),
+                  subtitle: Text(
+                    "Select your cuisines diet, only recipes from chosen cuisines will be displayed, defaults to all",
+                    style: TextStyle(color: Colors.pink),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Wrap(
+                    children: cuisines.map(
+                      (entry) {
+                        final value = data.cuisine.contains(entry);
+                        return GestureDetector(
+                          onTap: () {
+                            final modifiedUserPrefs = value == true
+                                ? _removeCuisine(data, entry)
+                                : _addCuisine(data, entry);
+                            _setUserPrefs(context, modifiedUserPrefs);
+                            setState(() {});
+                          },
+                          child: Tag(
+                            title: entry,
+                            show: true,
+                            value: value,
+                          ),
+                        );
                       },
-                    ),
+                    ).toList(),
                   ),
-                  const ListTile(
-                    title: Text(
-                      "Cuisines",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                    ),
+                ),
+                const ListTile(
+                  title: Text(
+                    "Intolerances",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Wrap(
-                      children: cuisines.map(
-                        (entry) {
-                          final value = data.cuisine.contains(entry);
-                          return GestureDetector(
-                            onTap: () {
-                              final modifiedUserPrefs = value == true
-                                  ? _removeCuisine(data, entry)
-                                  : _addCuisine(data, entry);
-                              _setUserPrefs(context, modifiedUserPrefs);
-                              setState(() {});
-                            },
-                            child: Tag(
-                              title: entry,
-                              show: true,
-                              value: value,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                    ),
+                  subtitle: Text(
+                    "Select your intolerances, recipes with the selected ingredients will be removed, defaults to none",
+                    style: TextStyle(color: Colors.pink),
                   ),
-                  const ListTile(
-                    title: Text("Intolerances",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Wrap(
+                    children: intolerances.map(
+                      (entry) {
+                        final value = data.intolerances.contains(entry);
+                        return GestureDetector(
+                          onTap: () {
+                            final modifiedUserPrefs = value == true
+                                ? _removeIntolerance(data, entry)
+                                : _addIntolerance(data, entry);
+                            _setUserPrefs(context, modifiedUserPrefs);
+                            setState(() {});
+                          },
+                          child: Tag(
+                            title: entry,
+                            show: true,
+                            value: value,
+                          ),
+                        );
+                      },
+                    ).toList(),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Wrap(
-                      children: intolerances.map(
-                        (entry) {
-                          final value = data.intolerances.contains(entry);
-                          return GestureDetector(
-                            onTap: () {
-                              final modifiedUserPrefs = value == true
-                                  ? _removeIntolerance(data, entry)
-                                  : _addIntolerance(data, entry);
-                              _setUserPrefs(context, modifiedUserPrefs);
-                              setState(() {});
-                            },
-                            child: Tag(
-                              title: entry,
-                              show: true,
-                              value: value,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ],
+                ),
+              ],
+            ),
+            error: (message) => Center(
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: Theme.of(context).errorColor,
+                ),
               ),
-              error: (message) => Text(message),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

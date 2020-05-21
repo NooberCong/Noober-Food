@@ -37,7 +37,14 @@ class IngredientBasedRecipePage extends StatelessWidget {
           snapshot.data as Either<Failure, List<IngredientBasedRecipePreview>>;
       return failureOrData.fold(
           (failure) => Center(
-                child: Text(messageFromFailure(failure)),
+                child: Text(
+                  messageFromFailure(
+                    failure,
+                  ),
+                  style: TextStyle(
+                    color: Theme.of(context).errorColor,
+                  ),
+                ),
               ),
           (data) => ListView.builder(
               physics: const BouncingScrollPhysics(),
@@ -54,7 +61,9 @@ class IngredientBasedRecipePage extends StatelessWidget {
               itemCount: data.length));
     } else {
       return const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          strokeWidth: 1.5,
+        ),
       );
     }
   }

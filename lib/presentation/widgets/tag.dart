@@ -16,9 +16,9 @@ class Tag extends StatelessWidget {
         margin: const EdgeInsets.only(right: 10, top: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: _containerColorFromValue(),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: _boxShadowFromValue()),
+          color: _containerColorFromValue(),
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Text(
           title,
           style: TextStyle(
@@ -35,7 +35,4 @@ class Tag extends StatelessWidget {
   Color _containerColorFromValue() => value ? Colors.green : Colors.grey[200];
 
   Color _textColorFromValue() => value ? Colors.white : Colors.green;
-
-  List<BoxShadow> _boxShadowFromValue() =>
-      value ? [BoxShadow(color: Colors.green, blurRadius: 1)] : [];
 }

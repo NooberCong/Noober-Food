@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         errorColor: Colors.grey[600],
         fontFamily: "OpenSans",
+        accentColor: Colors.green,
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
