@@ -3,13 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:nooberfood/core/errors/errors.dart';
 import 'package:nooberfood/core/failures/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:nooberfood/domain/data_structures/ingredient_based_recipe_preview.dart';
 import 'package:nooberfood/domain/data_structures/recipe_preview.dart';
 import 'package:nooberfood/domain/data_structures/recipe_infomation.dart';
 import 'package:nooberfood/domain/repositories/i_recipe_repository.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/i_persistent_data_api.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/user_preferences.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/i_recipe_api.dart';
-
 
 @RegisterAs(IRecipeRepository)
 @lazySingleton
@@ -40,10 +40,11 @@ class RecipeRepository implements IRecipeRepository {
   }
 
   @override
-  Future<Either<Failure, List<RecipePreview>>> fetchRecipesBasedOnIngredients(
-      List<String> ingredients) async {
+  Future<Either<Failure, List<IngredientBasedRecipePreview>>>
+      fetchRecipesBasedOnIngredients() async {
     try {
-      final result = await api.requestRecipesFromIngredients(ingredients);
+      final userIngredients = persistentDataApi.getUserIngredients();
+      final result = await api.requestRecipesFromIngredients(userIngredients);
       return Right(result);
     } on Exception catch (e) {
       return Left(_failureFromException(e));

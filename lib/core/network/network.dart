@@ -5,6 +5,7 @@ abstract class INetwork {
   Future<bool> get hasInternetConnection;
 }
 
+@RegisterAs(INetwork)
 @lazySingleton
 class Network implements INetwork {
   final DataConnectionChecker dataConnectionChecker;

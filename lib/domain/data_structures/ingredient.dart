@@ -4,14 +4,12 @@ import 'package:flutter/foundation.dart';
 class Ingredient extends IRecipe {
   final String description;
   final String imageUrl;
-  final String unit;
-  final double amount;
+  final String name;
 
   Ingredient(
       {@required this.description,
-      @required this.unit,
-      @required this.amount,
+      @required this.name,
       @required this.imageUrl});
   @override
-  List<Object> get props => [description, imageUrl, unit, amount];
+  List<Object> get props => [description, imageUrl, name];
 }

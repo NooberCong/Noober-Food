@@ -56,7 +56,7 @@ class RecipeInformationModel extends RecipeInformation {
       healthy: json["veryHealthy"] as bool,
       title: json["title"] as String,
       id: (json["id"] as num).toInt(),
-      imageUrl: json["image"] as String,
+      imageUrl: _extractImageUrl(json),
       summary: json["summary"] as String,
       readyInMinutes: (json["readyInMinutes"] as num).toInt(),
       score: (json["spoonacularScore"] as num).toDouble(),
@@ -80,4 +80,10 @@ List<IngredientModel> _extractIngredients(Map<String, dynamic> json) {
   return (json["extendedIngredients"] as List<dynamic>)
       .map((ingr) => IngredientModel.fromJson(ingr as Map<String, dynamic>))
       .toList();
+}
+
+String _extractImageUrl(Map<String, dynamic> json) {
+  return (json["image"] as String ??
+          "https://spoonacular.com/recipeImages/${json["id"]}-556x370.jpg")
+      .replaceAll("556x370", "636x393");
 }

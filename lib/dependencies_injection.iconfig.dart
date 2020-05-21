@@ -7,9 +7,9 @@
 import 'package:http/src/client.dart';
 import 'package:nooberfood/infrastructure/modules/modules.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:nooberfood/core/network/network.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/spoonacular_api.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/i_recipe_api.dart';
-import 'package:nooberfood/core/network/network.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/shared_prefs_data_api.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/i_persistent_data_api.dart';
@@ -23,6 +23,8 @@ import 'package:nooberfood/domain/usecases/get_recipe_information.dart';
 import 'package:nooberfood/domain/usecases/get_search_suggestions.dart';
 import 'package:nooberfood/domain/usecases/get_similar_recipes.dart';
 import 'package:nooberfood/application/bloc/ingredient_page_bloc/ingredient_page_bloc.dart';
+import 'package:nooberfood/application/bloc/preferences_page_bloc/preferences_page_bloc.dart';
+import 'package:nooberfood/application/bloc/recipe_information_bloc/recipe_information_bloc.dart';
 import 'package:nooberfood/application/bloc/search_page_bloc/search_page_bloc.dart';
 import 'package:nooberfood/application/bloc/discover_page_bloc/discover_page_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -32,9 +34,9 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<Client>(() => registerModule.client);
   g.registerLazySingleton<DataConnectionChecker>(
       () => registerModule.dataConnectionChecker);
+  g.registerLazySingleton<INetwork>(() => Network(g<DataConnectionChecker>()));
   g.registerLazySingleton<IRecipeApi>(
       () => SpoonacularApi(network: g<INetwork>(), client: g<Client>()));
-  g.registerLazySingleton<Network>(() => Network(g<DataConnectionChecker>()));
   final sharedPreferences = await registerModule.sharedPreferences;
   g.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   g.registerLazySingleton<IPersistentDataApi>(() =>
@@ -66,6 +68,11 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         addIngredients: g<AddIngredients>(),
         removeIngredients: g<RemoveIngredients>(),
       ));
+  g.registerFactory<PreferencesPageBloc>(() => PreferencesPageBloc(
+      setUserPreferences: g<SetUserPreferences>(),
+      getUserPreferences: g<GetUserPreferences>()));
+  g.registerFactory<RecipeInformationBloc>(() =>
+      RecipeInformationBloc(getRecipeInformation: g<GetRecipeInformation>()));
   g.registerFactory<SearchPageBloc>(
       () => SearchPageBloc(searchRecipes: g<SearchRecipes>()));
   g.registerFactory<DiscoverPageBloc>(

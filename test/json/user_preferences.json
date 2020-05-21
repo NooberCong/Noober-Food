@@ -1,12 +1,5 @@
 {
-    "cuisine": ["italian"],
-    "excludeIngredients": [
-        "egg",
-        "beef"
-    ],
-    "diet": "Vegetarian",
-    "intolerances": [
-        "Peanut",
-        "Egg"
-    ]
+  "cuisine": ["italian"],
+  "diet": "Vegetarian",
+  "intolerances": ["Peanut", "Egg"]
 }

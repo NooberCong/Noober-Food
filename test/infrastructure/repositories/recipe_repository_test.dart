@@ -5,12 +5,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nooberfood/core/errors/errors.dart';
 import 'package:nooberfood/core/failures/failure.dart';
+import 'package:nooberfood/domain/data_structures/ingredient_based_recipe_preview.dart';
 import 'package:nooberfood/domain/data_structures/recipe_infomation.dart';
 import 'package:nooberfood/domain/data_structures/recipe_preview.dart';
 import 'package:nooberfood/domain/repositories/i_recipe_repository.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/i_persistent_data_api.dart';
 import 'package:nooberfood/infrastructure/data_sources/persistent_data_api/user_preferences.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/i_recipe_api.dart';
+import 'package:nooberfood/infrastructure/data_structures/ingredient_based_recipe_preview_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_information_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_preview_model.dart';
 import 'package:nooberfood/infrastructure/repositories/recipe_repository.dart';
@@ -27,6 +29,7 @@ void main() {
   IRecipeRepository recipeRepository;
   List<RecipePreview> mockRecipePreviewList;
   List<RecipeInformation> mockRecipeInformationList;
+  List<IngredientBasedRecipePreview> mockIngredientsBasedRecipePreviewList;
   List<String> mockSuggestions;
   setUp(() {
     mockRecipeApi = MockRecipeApi();
@@ -49,6 +52,12 @@ void main() {
         (json.decode(readJsonFile("search_suggestions_results.json"))
                 as List<dynamic>)
             .map((entry) => entry["title"] as String)
+            .toList();
+    mockIngredientsBasedRecipePreviewList =
+        (json.decode(readJsonFile("search_recipe_by_ingredients_results.json"))
+                as List<dynamic>)
+            .map((entry) => IngredientBasedRecipePreviewModel.fromJson(
+                entry as Map<String, dynamic>))
             .toList();
   });
 
@@ -179,19 +188,20 @@ void main() {
   });
 
   group("fetchRecipesBasedOnIngredients", () {
-    test("Should return Right(List<RecipePreview>) when api call is successful",
+    test(
+        "Should return Right(List<IngredientBasedRecipePreview>) when api call is successful",
         () async {
       //arrange
       when(
         mockRecipeApi.requestRecipesFromIngredients(
           any,
         ),
-      ).thenAnswer((realInvocation) async => mockRecipePreviewList);
+      ).thenAnswer(
+          (realInvocation) async => mockIngredientsBasedRecipePreviewList);
       //act
-      final result =
-          await recipeRepository.fetchRecipesBasedOnIngredients(const []);
+      final result = await recipeRepository.fetchRecipesBasedOnIngredients();
       //assert
-      expect(result, Right(mockRecipePreviewList));
+      expect(result, Right(mockIngredientsBasedRecipePreviewList));
     });
 
     test("Should return Left(Failure) when NoConnectionException is thrown",
@@ -200,8 +210,7 @@ void main() {
       when(mockRecipeApi.requestRecipesFromIngredients(any))
           .thenThrow(NoConnectionException());
       //act
-      final result =
-          await recipeRepository.fetchRecipesBasedOnIngredients(const []);
+      final result = await recipeRepository.fetchRecipesBasedOnIngredients();
       //assert
       expect(result, Left(Failure.noconnection()));
     });
@@ -212,8 +221,7 @@ void main() {
       when(mockRecipeApi.requestRecipesFromIngredients(any))
           .thenThrow(ServerException());
       //act
-      final result =
-          await recipeRepository.fetchRecipesBasedOnIngredients(const []);
+      final result = await recipeRepository.fetchRecipesBasedOnIngredients();
       //assert
       expect(result, Left(Failure.server()));
     });

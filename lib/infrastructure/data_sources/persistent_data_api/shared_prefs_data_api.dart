@@ -14,8 +14,7 @@ const Map<String, dynamic> defaultUserPref = {
   "excludeIngredients": [],
   "intolerances": [],
 };
-const List<String> defaultIngredients = [];
-
+List<String> defaultIngredients() => [];
 
 @RegisterAs(IPersistentDataApi)
 @lazySingleton
@@ -25,7 +24,7 @@ class SharedPreferencesDataApi implements IPersistentDataApi {
   @override
   List<String> getUserIngredients() {
     return sharedPreferences.getStringList(ingredientsKey) ??
-        defaultIngredients;
+        defaultIngredients();
   }
 
   @override

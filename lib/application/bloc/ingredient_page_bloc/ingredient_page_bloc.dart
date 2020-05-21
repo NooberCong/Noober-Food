@@ -10,7 +10,6 @@ import 'package:nooberfood/domain/usecases/user_ingredients.dart';
 
 part 'ingredient_page_event.dart';
 part 'ingredient_page_state.dart';
-
 part 'ingredient_page_bloc.freezed.dart';
 
 @injectable

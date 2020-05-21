@@ -16,14 +16,10 @@ class _$UserPreferencesTearOff {
   const _$UserPreferencesTearOff();
 
   _UserPreferences call(
-      {String diet,
-      List<String> cuisine,
-      List<String> excludeIngredients,
-      List<String> intolerances}) {
+      {String diet, List<String> cuisine, List<String> intolerances}) {
     return _UserPreferences(
       diet: diet,
       cuisine: cuisine,
-      excludeIngredients: excludeIngredients,
       intolerances: intolerances,
     );
   }
@@ -35,7 +31,6 @@ const $UserPreferences = _$UserPreferencesTearOff();
 mixin _$UserPreferences {
   String get diet;
   List<String> get cuisine;
-  List<String> get excludeIngredients;
   List<String> get intolerances;
 
   Map<String, dynamic> toJson();
@@ -46,11 +41,7 @@ abstract class $UserPreferencesCopyWith<$Res> {
   factory $UserPreferencesCopyWith(
           UserPreferences value, $Res Function(UserPreferences) then) =
       _$UserPreferencesCopyWithImpl<$Res>;
-  $Res call(
-      {String diet,
-      List<String> cuisine,
-      List<String> excludeIngredients,
-      List<String> intolerances});
+  $Res call({String diet, List<String> cuisine, List<String> intolerances});
 }
 
 class _$UserPreferencesCopyWithImpl<$Res>
@@ -65,15 +56,11 @@ class _$UserPreferencesCopyWithImpl<$Res>
   $Res call({
     Object diet = freezed,
     Object cuisine = freezed,
-    Object excludeIngredients = freezed,
     Object intolerances = freezed,
   }) {
     return _then(_value.copyWith(
       diet: diet == freezed ? _value.diet : diet as String,
       cuisine: cuisine == freezed ? _value.cuisine : cuisine as List<String>,
-      excludeIngredients: excludeIngredients == freezed
-          ? _value.excludeIngredients
-          : excludeIngredients as List<String>,
       intolerances: intolerances == freezed
           ? _value.intolerances
           : intolerances as List<String>,
@@ -87,11 +74,7 @@ abstract class _$UserPreferencesCopyWith<$Res>
           _UserPreferences value, $Res Function(_UserPreferences) then) =
       __$UserPreferencesCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String diet,
-      List<String> cuisine,
-      List<String> excludeIngredients,
-      List<String> intolerances});
+  $Res call({String diet, List<String> cuisine, List<String> intolerances});
 }
 
 class __$UserPreferencesCopyWithImpl<$Res>
@@ -108,15 +91,11 @@ class __$UserPreferencesCopyWithImpl<$Res>
   $Res call({
     Object diet = freezed,
     Object cuisine = freezed,
-    Object excludeIngredients = freezed,
     Object intolerances = freezed,
   }) {
     return _then(_UserPreferences(
       diet: diet == freezed ? _value.diet : diet as String,
       cuisine: cuisine == freezed ? _value.cuisine : cuisine as List<String>,
-      excludeIngredients: excludeIngredients == freezed
-          ? _value.excludeIngredients
-          : excludeIngredients as List<String>,
       intolerances: intolerances == freezed
           ? _value.intolerances
           : intolerances as List<String>,
@@ -126,8 +105,7 @@ class __$UserPreferencesCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_UserPreferences implements _UserPreferences {
-  _$_UserPreferences(
-      {this.diet, this.cuisine, this.excludeIngredients, this.intolerances});
+  _$_UserPreferences({this.diet, this.cuisine, this.intolerances});
 
   factory _$_UserPreferences.fromJson(Map<String, dynamic> json) =>
       _$_$_UserPreferencesFromJson(json);
@@ -137,13 +115,11 @@ class _$_UserPreferences implements _UserPreferences {
   @override
   final List<String> cuisine;
   @override
-  final List<String> excludeIngredients;
-  @override
   final List<String> intolerances;
 
   @override
   String toString() {
-    return 'UserPreferences(diet: $diet, cuisine: $cuisine, excludeIngredients: $excludeIngredients, intolerances: $intolerances)';
+    return 'UserPreferences(diet: $diet, cuisine: $cuisine, intolerances: $intolerances)';
   }
 
   @override
@@ -155,9 +131,6 @@ class _$_UserPreferences implements _UserPreferences {
             (identical(other.cuisine, cuisine) ||
                 const DeepCollectionEquality()
                     .equals(other.cuisine, cuisine)) &&
-            (identical(other.excludeIngredients, excludeIngredients) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeIngredients, excludeIngredients)) &&
             (identical(other.intolerances, intolerances) ||
                 const DeepCollectionEquality()
                     .equals(other.intolerances, intolerances)));
@@ -168,7 +141,6 @@ class _$_UserPreferences implements _UserPreferences {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(diet) ^
       const DeepCollectionEquality().hash(cuisine) ^
-      const DeepCollectionEquality().hash(excludeIngredients) ^
       const DeepCollectionEquality().hash(intolerances);
 
   @override
@@ -185,7 +157,6 @@ abstract class _UserPreferences implements UserPreferences {
   factory _UserPreferences(
       {String diet,
       List<String> cuisine,
-      List<String> excludeIngredients,
       List<String> intolerances}) = _$_UserPreferences;
 
   factory _UserPreferences.fromJson(Map<String, dynamic> json) =
@@ -195,8 +166,6 @@ abstract class _UserPreferences implements UserPreferences {
   String get diet;
   @override
   List<String> get cuisine;
-  @override
-  List<String> get excludeIngredients;
   @override
   List<String> get intolerances;
   @override

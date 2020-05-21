@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:matcher/matcher.dart';
@@ -9,6 +8,7 @@ import 'package:nooberfood/core/errors/errors.dart';
 import 'package:nooberfood/core/network/network.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/i_recipe_api.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/spoonacular_api.dart';
+import 'package:nooberfood/infrastructure/data_structures/ingredient_based_recipe_preview_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_information_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_preview_model.dart';
 
@@ -164,7 +164,8 @@ void main() {
       when(mockNetWork.hasInternetConnection)
           .thenAnswer((realInvocation) async => true);
     });
-    test("Should return List<RecipePreview> when call to api is successful",
+    test(
+        "Should return List<IngredientBasedRecipePreview> when call to api is successful",
         () async {
       //arrange
       final encodedJson =
@@ -176,15 +177,14 @@ void main() {
         ),
       );
       //act
-      final result =
-          await recipeApi.requestRecipesFromIngredients(const ["ingredient"]);
+      final result = await recipeApi.requestRecipesFromIngredients(const []);
       //assert
       expect(
         result,
         (json.decode(encodedJson) as List<dynamic>)
             .map(
-              (entry) =>
-                  RecipePreviewModel.fromJson(entry as Map<String, dynamic>),
+              (entry) => IngredientBasedRecipePreviewModel.fromJson(
+                  entry as Map<String, dynamic>),
             )
             .toList(),
       );

@@ -27,9 +27,9 @@ class SearchPageBloc extends Bloc<SearchPageEvent, SearchPageState> {
     SearchPageEvent event,
   ) async* {
     yield const SearchPageState.loading();
-    final failureOfData =
+    final failureOrData =
         await searchRecipes(Params.stringParams(event.keyword));
-    yield failureOfData.fold(
+    yield failureOrData.fold(
         (failure) => SearchPageState.error(messageFromFailure(failure)),
         (data) => SearchPageState.loaded(data));
   }

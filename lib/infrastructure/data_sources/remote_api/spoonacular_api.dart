@@ -5,9 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:nooberfood/core/errors/errors.dart';
 import 'package:nooberfood/core/network/network.dart';
+import 'package:nooberfood/domain/data_structures/ingredient_based_recipe_preview.dart';
 import 'package:nooberfood/domain/data_structures/recipe_preview.dart';
 import 'package:nooberfood/domain/data_structures/recipe_infomation.dart';
 import 'package:nooberfood/infrastructure/data_sources/remote_api/i_recipe_api.dart';
+import 'package:nooberfood/infrastructure/data_structures/ingredient_based_recipe_preview_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_information_model.dart';
 import 'package:nooberfood/infrastructure/data_structures/recipe_preview_model.dart';
 import 'package:nooberfood/keys/key.dart';
@@ -97,7 +99,7 @@ class SpoonacularApi implements IRecipeApi {
   }
 
   @override
-  Future<List<RecipePreview>> requestRecipesFromIngredients(
+  Future<List<IngredientBasedRecipePreview>> requestRecipesFromIngredients(
       List<String> ingredients) async {
     await _checkConnection();
     final params = {
@@ -111,9 +113,9 @@ class SpoonacularApi implements IRecipeApi {
     );
     final response = await client.get(url);
     if (response.statusCode == 200) {
-      return _parseJsonList<RecipePreview, Map<String, dynamic>>(
+      return _parseJsonList<IngredientBasedRecipePreview, Map<String, dynamic>>(
         json.decode(response.body) as List<dynamic>,
-        parser: (entry) => RecipePreviewModel.fromJson(entry),
+        parser: (entry) => IngredientBasedRecipePreviewModel.fromJson(entry),
       );
     } else {
       throw ServerException();
@@ -172,7 +174,7 @@ class SpoonacularApi implements IRecipeApi {
   Uri _constructUrl(String path, Map<String, String> queryParams,
       {Map<String, String> userPrefs = const {}}) {
     queryParams.addAll(userPrefs);
-    return Uri.http(
+    return Uri.https(
       apiEndPoint,
       path,
       queryParams,

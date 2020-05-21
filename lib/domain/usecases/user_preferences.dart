@@ -22,7 +22,7 @@ class SetUserPreferences implements UseCase<void> {
 
   SetUserPreferences(this.recipeRepository);
   @override
-  Future<Either<Failure, void>> call(Params params) {
+  Future<Either<Failure, UserPreferences>> call(Params params) {
     return Future.value(recipeRepository
         .setUserPreferences((params as UserPrefsParams).userPreferences));
   }

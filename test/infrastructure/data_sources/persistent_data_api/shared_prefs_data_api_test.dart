@@ -44,7 +44,7 @@ void main() {
       //act
       final userPrefsBefore = persistentDataApi.getUserPreferences();
       final userPrefsAfter = userPrefsBefore.copyWith(
-          excludeIngredients: userPrefsBefore.excludeIngredients..add("Onion"));
+          cuisine: userPrefsBefore.cuisine..add("Vietnamese"));
       persistentDataApi.setUserPreferences(userPreferences: userPrefsAfter);
       //assert
       verify(mockSharedPreferences.setString(
