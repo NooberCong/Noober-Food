@@ -3,9 +3,8 @@ import 'package:nooberfood/application/bloc/ingredient_page_bloc/ingredient_page
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class IngredientInput extends StatefulWidget {
-  const IngredientInput({
-    Key key,
-  }) : super(key: key);
+  final FocusNode focusNode;
+  const IngredientInput({Key key, @required this.focusNode}) : super(key: key);
 
   @override
   _IngredientInputState createState() => _IngredientInputState();
@@ -19,6 +18,7 @@ class _IngredientInputState extends State<IngredientInput> {
       borderRadius: BorderRadius.circular(30),
       child: TextFormField(
         controller: _controller,
+        focusNode: widget.focusNode,
         onFieldSubmitted: (_) => _onSubmit(context),
         decoration: InputDecoration(
           fillColor: Colors.grey[300],

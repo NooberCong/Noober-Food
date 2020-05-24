@@ -101,7 +101,8 @@ class _RecipeInformationPageState extends State<RecipeInformationPage> {
               children: <Widget>[
                 Text(
                   data.title,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 20),
                 Stack(

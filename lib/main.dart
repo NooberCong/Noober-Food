@@ -17,6 +17,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //We need a focus node to unfocus when user navigate from ingredients page back to
+  //discover page, which will prevent the keyboard from poping up everytime user
+  //go back to this page from recipeInformationPage
+  final FocusNode _ingredientPageFormFocusNode = FocusNode();
+
   int _tabIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,12 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: const Color(0xffF4F4F4),
           body: IndexedStack(
             index: _tabIndex,
-            children: const <Widget>[DiscoverPage(), IngredientsPage()],
+            children: <Widget>[
+              const DiscoverPage(),
+              IngredientsPage(
+                formFocusNode: _ingredientPageFormFocusNode,
+              )
+            ],
           ),
           bottomNavigationBar: BottomNavBar(
             index: _tabIndex,
@@ -47,6 +57,9 @@ class _MyAppState extends State<MyApp> {
   void _setTab(int index) {
     setState(() {
       _tabIndex = index;
+      if (index == 0) {
+        _ingredientPageFormFocusNode.unfocus();
+      }
     });
   }
 }

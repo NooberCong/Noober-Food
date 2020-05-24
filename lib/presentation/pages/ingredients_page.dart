@@ -6,7 +6,9 @@ import 'package:nooberfood/presentation/widgets/ingredient_input.dart';
 import 'package:nooberfood/presentation/widgets/ingredient_item.dart';
 
 class IngredientsPage extends StatelessWidget {
-  const IngredientsPage({Key key}) : super(key: key);
+  final FocusNode formFocusNode;
+  const IngredientsPage({Key key, @required this.formFocusNode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,9 @@ class IngredientsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const IngredientInput(),
+                IngredientInput(
+                  focusNode: formFocusNode,
+                ),
                 const SizedBox(height: 20),
                 Expanded(
                   child: BlocBuilder<IngredientPageBloc, IngredientPageState>(

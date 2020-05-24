@@ -23,26 +23,26 @@ class SimilarRecipeList extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        FutureBuilder(
-          future: GetSimilarRecipes(getIt<IRecipeRepository>())
-              .call(Params.stringParams(recipeId)),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData) {
-              return (snapshot.data as Either<Failure, List<RecipePreview>>)
-                  .fold(
-                (failure) => Center(
-                  child: Text(
-                    messageFromFailure(
-                      failure,
-                    ),
-                    style: TextStyle(
-                      color: Theme.of(context).errorColor,
+        SizedBox(
+          height: 150,
+          child: FutureBuilder(
+            future: GetSimilarRecipes(getIt<IRecipeRepository>())
+                .call(Params.stringParams(recipeId)),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasData) {
+                return (snapshot.data as Either<Failure, List<RecipePreview>>)
+                    .fold(
+                  (failure) => Center(
+                    child: Text(
+                      messageFromFailure(
+                        failure,
+                      ),
+                      style: TextStyle(
+                        color: Theme.of(context).errorColor,
+                      ),
                     ),
                   ),
-                ),
-                (data) => SizedBox(
-                  height: 150,
-                  child: ListView.separated(
+                  (data) => ListView.separated(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -53,14 +53,16 @@ class SimilarRecipeList extends StatelessWidget {
                     separatorBuilder: (BuildContext context, int index) =>
                         const SizedBox(width: 20),
                   ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: .5,
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ],
     );
